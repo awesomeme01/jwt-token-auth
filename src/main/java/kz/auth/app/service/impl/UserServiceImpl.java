@@ -7,6 +7,8 @@ import kz.auth.app.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -37,5 +39,10 @@ public class UserServiceImpl implements UserService {
     public User getUserByUsername(String username) {
         return this.userRepository.findUserByUsername(username)
                 .orElseThrow(() -> new EntityNotFoundException("User not found with username = " + username));
+    }
+
+    @Override
+    public List<User> findAll() {
+        return this.userRepository.findAll();
     }
 }
